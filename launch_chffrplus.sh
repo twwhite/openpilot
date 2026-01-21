@@ -29,21 +29,21 @@ function two_init {
 
 
   # Check for NEOS update
-  if [ $(< /VERSION) != "$REQUIRED_NEOS_VERSION" ]; then
-    if [ -f "$DIR/scripts/continue.sh" ]; then
-      cp "$DIR/scripts/continue.sh" "/data/data/com.termux/files/continue.sh"
-    fi
+  # if [ $(< /VERSION) != "$REQUIRED_NEOS_VERSION" ]; then
+  #   if [ -f "$DIR/scripts/continue.sh" ]; then
+  #     cp "$DIR/scripts/continue.sh" "/data/data/com.termux/files/continue.sh"
+  #   fi
 
-    if [ ! -f "$BASEDIR/prebuilt" ]; then
-      # Clean old build products, but preserve the scons cache
-      cd $DIR
-      scons --clean
-      git clean -xdf
-      git submodule foreach --recursive git clean -xdf
-    fi
+  #   if [ ! -f "$BASEDIR/prebuilt" ]; then
+  #     # Clean old build products, but preserve the scons cache
+  #     cd $DIR
+  #     scons --clean
+  #     git clean -xdf
+  #     git submodule foreach --recursive git clean -xdf
+  #   fi
 
-    "$DIR/installer/updater/updater" "file://$DIR/installer/updater/update.json"
-  fi
+  #   "$DIR/installer/updater/updater" "file://$DIR/installer/updater/update.json"
+  # fi
 
   # One-time fix for a subset of OP3T with gyro orientation offsets.
   # Remove and regenerate qcom sensor registry. Only done on OP3T mainboards.
